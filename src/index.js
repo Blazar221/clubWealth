@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import MainFunctional from "./components/mainFunctional";
+import CWRoutes from "./router/routes";
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <MainFunctional />
+        {/* <MainFunctional /> */}
+        <CWRoutes />
       </div>
     );
   }
