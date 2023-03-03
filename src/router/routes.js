@@ -10,7 +10,7 @@ import Sidebar from "../components/sidebar";
 
 const Container = () => {
     return <div className="d-flex">
-        <div style={{ width: "15%" }}>
+        <div>
             <Sidebar />
         </div>
         <div>

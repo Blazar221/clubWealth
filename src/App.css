@@ -1,0 +1,42 @@
+.cw-sidebar {
+    transition: width 0.5s ease-in-out;
+}
+
+.cw-sidebar-nav-link {
+    height: 2.5rem;
+    line-height: 2.5rem;
+    font-size: 1rem;
+    text-align: center;
+    white-space: nowrap;
+    transition: opacity 0.5s ease-in, width 0.5s ease-in-out;
+}
+
+.cw-sidebar-nav-link-expand {
+    opacity: 1;
+}
+
+.cw-sidebar-nav-link-collapse {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.cw-sidebar-logo-link {
+    white-space: nowrap;
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+.cw-sidebar-logo-link-expand {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.cw-sidebar-logo-link-collapse {
+    opacity: 0;
+    transform: translateX(-100%);
+}
+
+.cw-sidebar-logo-icon {
+    position: absolute;
+    font-size: 2.5rem;
+    right: 0.5rem
+}
