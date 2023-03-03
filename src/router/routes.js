@@ -9,12 +9,23 @@ import Header from "../components/header";
 import Sidebar from "../components/sidebar";
 
 const Container = () => {
+    const activePath = useLocation().pathname
+
+    const headerName = (activePath) => {
+        switch (activePath) {
+            case "/":
+                return "Starwars"
+            case "/covid":
+                return "Covid"
+            default:
+                return "Cat"
+        }
+    }
+
     return <div className="d-flex">
-        <div>
-            <Sidebar />
-        </div>
-        <div>
-            <Header />
+        <Sidebar />
+        <div className="p-0 ps-3 container-fluid">
+            <Header name={headerName(activePath)} />
             <Outlet />
         </div>
     </div>

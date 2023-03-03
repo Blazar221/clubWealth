@@ -1,3 +1,8 @@
+:root {
+    --color-primary: #5B62F4;
+    --color-secondary: #D9E3F1;
+}
+
 .cw-sidebar {
     transition: width 0.5s ease-in-out;
 }
@@ -9,7 +14,7 @@
 
 .cw-sidebar-nav:hover {
     position: relative;
-    color: blue;
+    color: var(--color-primary);
 }
 
 .cw-sidebar-nav::after {
