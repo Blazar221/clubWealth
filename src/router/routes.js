@@ -4,12 +4,17 @@ import { BrowserRouter as Router, Outlet, Route, Routes, useLocation, Navigate }
 import PageCat from "../pages/pageCat";
 import PageStarwars from "../pages/pageStarwars";
 import PageCovid from "../pages/pageCovid";
+// Components
+import Header from "../components/header";
+import Sidebar from "../components/sidebar";
 
 const Container = () => {
-    return <div>
-        <div>This is header</div>
+    return <div className="d-flex">
+        <div style={{ width: "15%" }}>
+            <Sidebar />
+        </div>
         <div>
-            <div>This is the sidebar</div>
+            <Header />
             <Outlet />
         </div>
     </div>

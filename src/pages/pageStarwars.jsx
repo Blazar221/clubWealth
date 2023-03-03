@@ -3,7 +3,7 @@ import React from 'react';
 const PageStarwars = () => {
     return (
         <div>
-            This is star wars
+            This is Starwars
         </div>
     );
 }

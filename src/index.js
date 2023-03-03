@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import MainFunctional from "./components/mainFunctional";
 import CWRoutes from "./router/routes";
+// BootsWatch style to overwrite the default Bootstrap css
+import "./App.css";
+import "bootswatch/dist/morph/bootstrap.min.css";
+// Some global style
 class App extends Component {
   render() {
     return (
