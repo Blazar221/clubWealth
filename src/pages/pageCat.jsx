@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import cats from '../APIs/cats';
+import CatCard from '../components/catCard';
 
 const PageCat = () => {
 
@@ -18,14 +19,7 @@ const PageCat = () => {
                 <div className='row w-100 d-flex justify-content-evenly'>
                     {data.map((item) => {
                         return <div className='col-12 col-lg-4 d-flex justify-content-center'>
-                            <div className="card cw-card p-0 m-1" style={{ width: "320px" }}>
-                                <img src={item.url} className="card-img-top" alt={item.id}
-                                    style={{ minWidth: "100%", maxWidth: "100%", minHeight: "20rem", maxHeight: "20rem" }}
-                                />
-                                <div className="card-body">
-                                    <h5 className="card-title">{item.id}</h5>
-                                </div>
-                            </div>
+                            <CatCard url={item.url} catId={item.id} />
                         </div>
                     })}
                 </div>

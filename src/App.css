@@ -1,4 +1,5 @@
 @import url(./styles/sidebar.css);
+@import url(./styles/card.css);
 
 :root {
     --color-primary: #5B62F4;
