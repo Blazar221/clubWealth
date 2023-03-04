@@ -34,7 +34,7 @@ const Sidebar = () => {
         >
             <div className='text-light text-decoration-none p-2 d-flex gap-2 fs-3 align-items-center position-relative'
                 onClick={toggle}>
-                <p className={`m-0 fs-5 cw-sidebar-logo-link cw-sidebar-logo-link-${isExpand ? "expand" : "collapse"}`}>Club Wealth</p>
+                <p className={`m-0 cw-sidebar-logo-link cw-sidebar-logo-link-${isExpand ? "expand" : "collapse"}`}>Club Wealth</p>
                 <Icon className={`cw-sidebar-logo-icon cw-sidebar-logo-icon-${isExpand ? "expand" : "collapse"}`} icon="material-symbols:menu-rounded"></Icon>
             </div>
             {
