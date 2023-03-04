@@ -25,7 +25,6 @@ const Sidebar = () => {
     const [isExpand, setIsExpand] = useState(true);
 
     const toggle = () => {
-        console.log("click")
         setIsExpand(!isExpand)
     }
 

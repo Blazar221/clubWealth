@@ -5,6 +5,9 @@
 
 .cw-sidebar {
     transition: width 0.5s ease-in-out;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
 }
 
 .cw-sidebar-nav {
