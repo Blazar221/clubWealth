@@ -6,7 +6,7 @@
 }
 
 .cw-card-dislike:hover * {
-    fill: var(--color-primary);
+    fill: var(--color-warning);
 }
 
 .cw-card:hover {

@@ -11,8 +11,7 @@ const cats = {
       const response = await axios.get(
         "https://api.thecatapi.com/v1/images/search?limit=3&api_key=" + API_KEY
       );
-      // console.log(response)
-      return response.data;
+      return response;
     } catch (error) {
       return error;
     }

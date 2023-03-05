@@ -4,4 +4,6 @@
 :root {
     --color-primary: #5B62F4;
     --color-secondary: #D9E3F1;
+    --color-warning: #FFC107;
+    --color-danger: #E52527;
 }

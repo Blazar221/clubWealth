@@ -3,16 +3,21 @@ import ReactDOM from "react-dom";
 import MainFunctional from "./components/mainFunctional";
 import CWRoutes from "./router/routes";
 // BootsWatch style to overwrite the default Bootstrap css
-import "./App.css";
 import "bootswatch/dist/morph/bootstrap.min.css";
-// Some global style
+// custom style
+import "./App.css";
+// Redux
+import { store } from "./redux/store";
+import { Provider } from "react-redux";
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        {/* <MainFunctional /> */}
-        <CWRoutes />
-      </div>
+      <Provider store={store}>
+        <div className="App">
+          {/* <MainFunctional /> */}
+          <CWRoutes />
+        </div>
+      </Provider>
     );
   }
 }
