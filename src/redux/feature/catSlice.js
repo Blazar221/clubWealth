@@ -7,10 +7,13 @@ export const fetchData = createAsyncThunk('cat/100cats', async () => {
   return response.data;
 });
 
-const cacheData = localStorage.getItem("catData")
+const cacheData = JSON.parse(localStorage.getItem("catData")) || []
 const initialState = {
-  data: JSON.parse(cacheData) || null,
-  status: cacheData ? "succeeded" : "idle",
+  data: cacheData,
+  curPageData: cacheData.slice(0, Math.min(3, cacheData.length)),
+  curPage: 0,
+  pages: Math.max(Math.ceil(cacheData.length / 3), 1),
+  status: cacheData.length > 0 ? "succeeded" : "idle",
   error: null
 }
 
@@ -20,7 +23,15 @@ const catSlice = createSlice({
   reducers: {
     removeCat: (state, action) => {
       state.data = state.data.filter(item => item.id !== action.payload);
+      state.curPageData = state.data.slice(3 * state.curPage, Math.min(state.data.length, 3 * (state.curPage + 1)))
+      state.pages = Math.max(Math.ceil(state.data.length / 3), 1);
+      
       localStorage.setItem("catData", JSON.stringify(state.data))
+    },
+    setPage: (state, action) => {
+      state.curPage = action.payload
+      state.curPageData = state.data.slice(3 * state.curPage, Math.min(state.data.length, 3 * (state.curPage + 1)))
+      state.pages = Math.max(Math.ceil(state.data.length / 3), 1);
     }
   },
   extraReducers: (builder) => {
@@ -32,6 +43,8 @@ const catSlice = createSlice({
       .addCase(fetchData.fulfilled, (state, action) => {
         state.status = 'succeeded';
         state.data = action.payload;
+        state.curPageData = state.data.slice(3 * state.curPage, Math.min(state.data.length, 3 * (state.curPage + 1)));
+        state.pages = Math.max(Math.ceil(state.data.length / 3), 1);
       })
       .addCase(fetchData.rejected, (state, action) => {
         state.status = 'failed';
@@ -39,6 +52,6 @@ const catSlice = createSlice({
       });
   },
 });
-export const { removeCat } = catSlice.actions
+export const { removeCat, setPage } = catSlice.actions
 
 export default catSlice.reducer;
