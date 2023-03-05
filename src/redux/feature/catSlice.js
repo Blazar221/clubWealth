@@ -36,11 +36,18 @@ const catSlice = createSlice({
       state.pages = Math.max(Math.ceil(state.data.length / 3), 1);
     },
     searchCat: (state, action) => {
-      debugger
       state.data = state.originData.filter(item => item.id.includes(action.payload))
       state.curPage = 0
       state.curPageData = state.data.slice(3 * state.curPage, Math.min(state.data.length, 3 * (state.curPage + 1)))
       state.pages = Math.max(Math.ceil(state.data.length / 3), 1);
+    },
+    sortCat: (state, action) => {
+      if (action.payload == 0) {
+        state.data.sort()
+      } else {
+        state.data.reverse()
+      }
+      state.curPageData = state.data.slice(3 * state.curPage, Math.min(state.data.length, 3 * (state.curPage + 1)))
     }
   },
   extraReducers: (builder) => {
@@ -61,6 +68,6 @@ const catSlice = createSlice({
       });
   },
 });
-export const { removeCat, setPage, searchCat } = catSlice.actions
+export const { removeCat, setPage, searchCat, sortCat } = catSlice.actions
 
 export default catSlice.reducer;
