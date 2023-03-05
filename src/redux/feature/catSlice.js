@@ -17,6 +17,12 @@ const initialState = {
 const catSlice = createSlice({
   name: 'cat',
   initialState,
+  reducers: {
+    removeCat: (state, action) => {
+      state.data = state.data.filter(item => item.id !== action.payload);
+      localStorage.setItem("catData", JSON.stringify(state.data))
+    }
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchData.pending, (state) => {
@@ -33,5 +39,6 @@ const catSlice = createSlice({
       });
   },
 });
+export const { removeCat } = catSlice.actions
 
 export default catSlice.reducer;
