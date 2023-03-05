@@ -10,8 +10,8 @@ const PageCat = () => {
     const status = useSelector((state) => state.cat.status);
     const error = useSelector((state) => state.cat.error);
     const pages = useSelector((state) => state.cat.pages);
-    debugger
     let pagesArray;
+    debugger
 
     switch (pages) {
         case 1:
@@ -70,7 +70,7 @@ const PageCat = () => {
 
     return (
         <div>
-            {curPageData ? <div>
+            {curPageData?.length > 0 ? <div>
                 <div className='container d-flex flex-wrap align-items-center justify-content-around'>
                     <div className='row w-100 d-flex justify-content-evenly'>
                         {curPageData.map((item) => {
@@ -93,7 +93,7 @@ const PageCat = () => {
                         <li class="page-item" onClick={() => changePage(pages - 1)}><p style={{ cursor: "pointer" }} class="page-link m-0">Last</p></li>
                     </ul>
                 </nav>
-            </div > : <p>no data</p>}
+            </div > : <h1>Oops, there is no data</h1>}
         </div >
     );
 }

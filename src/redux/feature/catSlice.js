@@ -9,6 +9,7 @@ export const fetchData = createAsyncThunk('cat/100cats', async () => {
 
 const cacheData = JSON.parse(localStorage.getItem("catData")) || []
 const initialState = {
+  originData: cacheData,
   data: cacheData,
   curPageData: cacheData.slice(0, Math.min(3, cacheData.length)),
   curPage: 0,
@@ -22,14 +23,22 @@ const catSlice = createSlice({
   initialState,
   reducers: {
     removeCat: (state, action) => {
+      state.originData = state.originData.filter(item => item.id !== action.payload);
       state.data = state.data.filter(item => item.id !== action.payload);
       state.curPageData = state.data.slice(3 * state.curPage, Math.min(state.data.length, 3 * (state.curPage + 1)))
       state.pages = Math.max(Math.ceil(state.data.length / 3), 1);
-      
+
       localStorage.setItem("catData", JSON.stringify(state.data))
     },
     setPage: (state, action) => {
       state.curPage = action.payload
+      state.curPageData = state.data.slice(3 * state.curPage, Math.min(state.data.length, 3 * (state.curPage + 1)))
+      state.pages = Math.max(Math.ceil(state.data.length / 3), 1);
+    },
+    searchCat: (state, action) => {
+      debugger
+      state.data = state.originData.filter(item => item.id.includes(action.payload))
+      state.curPage = 0
       state.curPageData = state.data.slice(3 * state.curPage, Math.min(state.data.length, 3 * (state.curPage + 1)))
       state.pages = Math.max(Math.ceil(state.data.length / 3), 1);
     }
@@ -37,11 +46,11 @@ const catSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchData.pending, (state) => {
-        console.log("laoding")
         state.status = 'loading';
       })
       .addCase(fetchData.fulfilled, (state, action) => {
         state.status = 'succeeded';
+        state.originData = action.payload;
         state.data = action.payload;
         state.curPageData = state.data.slice(3 * state.curPage, Math.min(state.data.length, 3 * (state.curPage + 1)));
         state.pages = Math.max(Math.ceil(state.data.length / 3), 1);
@@ -52,6 +61,6 @@ const catSlice = createSlice({
       });
   },
 });
-export const { removeCat, setPage } = catSlice.actions
+export const { removeCat, setPage, searchCat } = catSlice.actions
 
 export default catSlice.reducer;

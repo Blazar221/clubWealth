@@ -30,7 +30,7 @@ const Sidebar = () => {
 
     return (
         <div className='cw-sidebar d-inline-flex flex-column bg-info vh-100 pt-2'
-            style={{ width: isExpand ? "13.75rem" : "3.5rem" }}
+            style={{ width: isExpand ? "13.75rem" : "3.5rem", cursor: "pointer" }}
         >
             <div className='text-light text-decoration-none p-2 d-flex gap-2 fs-3 align-items-center position-relative'
                 onClick={toggle}>
