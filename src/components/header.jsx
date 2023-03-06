@@ -70,8 +70,9 @@ const Header = ({ name }) => {
                 {
                     name == "Covid" ?
                         <div className='m-2 d-flex align-items-center' style={{ height: "2.5rem" }}>
-                            <p className="m-0 me-2" style={{ whiteSpace: "nowrap", lineHeight: "2.5rem", textAlign: "center" }}>Choose the date:</p>
+                            <p className="m-0 me-2 cw-search-btn" style={{ whiteSpace: "nowrap", lineHeight: "2.5rem", textAlign: "center" }}>Choose the date:</p>
                             <DatePicker
+                                className='cw-search-bar'
                                 selected={chosenDate}
                                 startDate={startDate}
                                 endDate={endDate}
@@ -81,10 +82,10 @@ const Header = ({ name }) => {
                                 onSelect={handleSelect}
                             />
                         </div> : <form class="d-flex">
-                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+                            <input class="form-control me-2 cw-search-bar" type="search" placeholder="Search" aria-label="Search"
                                 onChange={(event) => { setKeyword(event.target.value) }}
                             />
-                            <button class="btn btn-outline-success" onClick={handleSearch}>Search</button>
+                            <button class="btn btn-outline-success cw-search-btn" onClick={handleSearch}>Search</button>
                         </form>
                 }
             </div>
