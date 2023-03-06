@@ -1,2 +1,5 @@
-# clubWealth
-Created with CodeSandbox
+# Project Traits
+## Responsive design
+## Redux Integration
+## Highcharts Integration
+## Sidebar and Header
