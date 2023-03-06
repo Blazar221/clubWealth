@@ -20,8 +20,23 @@
 .cw-starwars-card {
     height: 27rem;
 }
+
 .cw-starwars-card-btn {
     position: absolute;
     bottom: 2rem;
     left: 2rem;
+}
+
+.cw-starwars-dislike {
+    position: absolute;
+    right: 1rem;
+    top: 0.8rem;
+}
+
+.cw-starwars-dislike * {
+    fill: var(--color-primary);
+}
+
+.cw-starwars-dislike:hover * {
+    fill: var(--color-warning);
 }

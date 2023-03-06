@@ -1,11 +1,20 @@
 import React from 'react';
-
+import { Icon } from '@iconify/react';
+import { useDispatch, useSelector } from 'react-redux';
+import { remove } from '../../redux/feature/starwarsSlice';
 const ContentPage = ({ data }) => {
+
+    const dispatch = useDispatch()
+
+    const dislike = (name) => {
+        dispatch(remove(name))
+    }
+
     const createText = (item) => {
         const ans = []
         for (let key in item) {
             const val = item[key]
-            if (!val.includes("swapi.dev") && !Array.isArray(val)) {
+            if (!val.includes("swapi.dev") && !Array.isArray(val) && key !== "edited" && key !== "created") {
                 ans.push(`${key}: ${val}`);
             }
         }
@@ -23,10 +32,13 @@ const ContentPage = ({ data }) => {
                             </button>
                         </h2>
                         <div id={`collapse${index}`} class={`accordion-collapse collapse ${index == 0 ? "show" : ""}`} aria-labelledby="panelsStayOpen-headingOne">
-                            <div class="accordion-body">
+                            <div class="accordion-body position-relative">
                                 {createText(item).map(i => {
                                     return <p>{i}</p>
                                 })}
+                                <div className='cw-starwars-dislike' onClick={() => dislike(item.name)}>
+                                    <Icon icon="mdi:heart-off-outline" className='text-light fs-2' />
+                                </div>
                             </div>
                         </div>
                     </div>

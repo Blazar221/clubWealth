@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { searchCat, sortCat } from '../redux/feature/catSlice';
+import { search, sortData } from '../redux/feature/starwarsSlice';
 import { Icon } from '@iconify/react';
 // Covid
 import DatePicker from "react-datepicker";
@@ -28,11 +29,14 @@ const Header = ({ name }) => {
         dispatch(setDate(newDate))
     }
 
-    const search = (event) => {
+    const handleSearch = (event) => {
         event.preventDefault()
         switch (name) {
             case "Cat":
                 dispatch(searchCat(keyword))
+                break
+            case "Starwars":
+                dispatch(search(keyword))
                 break
             default:
                 break
@@ -45,6 +49,9 @@ const Header = ({ name }) => {
         switch (name) {
             case "Cat":
                 dispatch(sortCat(sortState))
+                break
+            case "Starwars":
+                dispatch(sortData(sortState))
                 break
             default:
                 break
@@ -77,7 +84,7 @@ const Header = ({ name }) => {
                             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
                                 onChange={(event) => { setKeyword(event.target.value) }}
                             />
-                            <button class="btn btn-outline-success" onClick={search}>Search</button>
+                            <button class="btn btn-outline-success" onClick={handleSearch}>Search</button>
                         </form>
                 }
             </div>

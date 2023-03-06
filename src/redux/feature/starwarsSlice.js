@@ -38,7 +38,6 @@ const starwarsSlice = createSlice({
     reducers: {
         setPage: (state, action) => {
             state.page = action.payload
-            debugger
             if (action.payload === "People") {
                 state.data = state.peopleData
             } else if (action.payload === "Planets") {
@@ -46,7 +45,46 @@ const starwarsSlice = createSlice({
             } else if (action.payload === "Starships") {
                 state.data = state.starshipsData
             }
-        }
+        },
+        search: (state, action) => {
+            state.page = "Search"
+            const tmp = []
+            state.peopleData.map(item => {
+                const ts = JSON.stringify(item)
+                if (ts.includes(action.payload))
+                    tmp.push(item)
+            })
+            state.planetsData.map(item => {
+                const ts = JSON.stringify(item)
+                if (ts.includes(action.payload))
+                    tmp.push(item)
+            })
+            state.starshipsData.map(item => {
+                const ts = JSON.stringify(item)
+                if (ts.includes(action.payload))
+                    tmp.push(item)
+            })
+            state.data = tmp
+        },
+        sortData: (state, action) => {
+            if (action.payload == 0) {
+                state.data?.sort()
+            } else if (action.payload === 1) {
+                state.data?.sort((a, b) => a.name.localeCompare(b.name))
+            } else {
+                state.data?.sort((a, b) => a.name.localeCompare(b.name)).reverse()
+            }
+        },
+        remove: (state, action) => {
+            state.peopleData = state.peopleData.filter(item => item.name !== action.payload);
+            localStorage.setItem("peopleData", JSON.stringify(state.peopleData))
+            state.planetsData = state.planetsData.filter(item => item.name !== action.payload);
+            localStorage.setItem("planetsData", JSON.stringify(state.planetsData))
+            state.starshipsData = state.starshipsData.filter(item => item.name !== action.payload);
+            localStorage.setItem("starshipsData", JSON.stringify(state.starshipsData))
+
+            state.data = state.data.filter(item => item.name !== action.payload);
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -85,6 +123,6 @@ const starwarsSlice = createSlice({
             });
     },
 });
-export const { setPage } = starwarsSlice.actions
+export const { setPage, search, sortData, remove } = starwarsSlice.actions
 
 export default starwarsSlice.reducer;
