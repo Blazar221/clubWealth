@@ -27,12 +27,12 @@ const PageCovid = () => {
 
     return <div className="container">
         <div className="row">
-            <div className="col-8">
+            <div className="col-12 col-md-8">
                 <div className="card cw-card m-2">
                     <PositiveCasesTilemap data={data} date={date} />
                 </div>
             </div>
-            <div className="col-4">
+            <div className="col-12 col-md-4">
                 <div className="card cw-card m-2">
                     <TopProbChart data={data} date={date} />
                 </div>

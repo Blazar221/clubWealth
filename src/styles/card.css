@@ -16,3 +16,12 @@
 .cw-card:hover .cw-card-dislike {
     display: block;
 }
+
+.cw-starwars-card {
+    height: 27rem;
+}
+.cw-starwars-card-btn {
+    position: absolute;
+    bottom: 2rem;
+    left: 2rem;
+}
