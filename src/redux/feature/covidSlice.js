@@ -9,7 +9,6 @@ export const fetchData = createAsyncThunk('covid/history', async () => {
             "state": item.state,
             "positive": item.positive || 0,
             "probableCases": item.probableCases || 0,
-            "death": item.death || 0
         }
     })
     localStorage.setItem("covidData", JSON.stringify(filteredData))

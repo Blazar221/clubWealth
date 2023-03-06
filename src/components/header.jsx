@@ -41,6 +41,7 @@ const Header = ({ name }) => {
                 <div style={{ height: "2rem" }} className='d-flex align-content-center justify-content-center'>
                     <p className='m-0 fs-2' style={{ lineHeight: "2rem", textAlign: "center" }}>{name}</p>
                     <Icon onClick={changeSort}
+                        style={{ display: name == "Covid" ? "none" : "block" }}
                         icon={`${sortState == 0 ? "carbon:caret-sort" : sortState == 1 ? "carbon:caret-sort-down" : "carbon:caret-sort-up"}`} className='fs-2 ms-2' />
                 </div>
                 <form class="d-flex">

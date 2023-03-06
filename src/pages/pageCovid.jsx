@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import PositiveCasesTilemap from '../components/covid/positiveCasesTilemap';
+import TopProbChart from '../components/covid/topProbChart';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchData, setDate } from '../redux/feature/covidSlice';
 
@@ -38,17 +39,27 @@ const PageCovid = () => {
 
     return <div className="container">
         <div className="row">
-            <div className="col-6">
-                <DatePicker
-                    selected={chosenDate}
-                    startDate={startDate}
-                    endDate={endDate}
-                    minDate={startDate}
-                    maxDate={endDate}
-                    dateFormat="yyyy-MM-dd"
-                    onSelect={handleSelect}
-                />
-                <PositiveCasesTilemap data={data} date={date} />
+            <div className="col-8">
+                {/* <div className='m-2 d-flex align-items-center' style={{ height: "2.5rem" }}>
+                    <p className="m-0 me-2" style={{ whiteSpace: "nowrap", lineHeight: "2.5rem", textAlign: "center" }}>Choose the date:</p>
+                    <DatePicker
+                        selected={chosenDate}
+                        startDate={startDate}
+                        endDate={endDate}
+                        minDate={startDate}
+                        maxDate={endDate}
+                        dateFormat="yyyy-MM-dd"
+                        onSelect={handleSelect}
+                    />
+                </div> */}
+                <div className="card cw-card m-2">
+                    <PositiveCasesTilemap data={data} date={date} />
+                </div>
+            </div>
+            <div className="col-4">
+                <div className="card cw-card m-2">
+                    <TopProbChart data={data} date={date} />
+                </div>
             </div>
         </div>
     </div>

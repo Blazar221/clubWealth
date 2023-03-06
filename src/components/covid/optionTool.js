@@ -3,7 +3,7 @@ import originMapData from "./mapOption.json"
 
 export const createOption = (data, date) => {
     const copyData = originMapData
-    debugger
+
     data.map(item => {
         if (item.state in copyData) {
             copyData[item.state].value = item.positive
@@ -14,7 +14,8 @@ export const createOption = (data, date) => {
         chart: {
             type: 'tilemap',
             inverted: true,
-            height: '80%'
+            height: '80%',
+            backgroundColor: 'transparent',
         },
 
         accessibility: {
@@ -95,5 +96,36 @@ export const createOption = (data, date) => {
         }]
     }
 
+    return options
+}
+
+export const createTopOption = (data, date) => {
+    const copyData = data.slice()
+    copyData.sort((a, b) => b.probableCases - a.probableCases)
+    const topData = copyData.slice(0, 5)
+    debugger
+    const options = {
+        chart: {
+            type: 'bar',
+            backgroundColor: "transparent"
+        },
+        title: {
+            text: 'Top 5 most probable cases'
+        },
+        xAxis: {
+            categories: topData.map(item => item.state),
+            title: {
+                text: 'State',
+            },
+        },
+        yAxis: {
+            min: 0,
+            title: null,
+        },
+        series: [{
+            name: 'number of cases',
+            data: topData.map(item => item.probableCases),
+        }],
+    }
     return options
 }
