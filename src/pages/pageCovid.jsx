@@ -9,7 +9,7 @@ const PageCovid = () => {
     const error = useSelector((state) => state.covid.error);
     const data = useSelector((state) => state.covid.data);
     const date = useSelector((state) => state.covid.date);
-    
+    debugger
     useEffect(() => {
         if (status === 'idle') {
             dispatch(fetchData());

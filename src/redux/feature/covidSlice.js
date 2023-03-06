@@ -2,13 +2,21 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import covid from '../../APIs/covid';
 
 export const fetchData = createAsyncThunk('covid/history', async () => {
-    const response = await covid.getCurrentCovidStats()
-    localStorage.setItem("covidData", JSON.stringify(response.data))
-    
-    return response.data;
+    const response = await covid.getHistoricDailyCovidStats()
+    const filteredData = response.data.map((item) => {
+        return {
+            "date": item.date,
+            "state": item.state,
+            "positive": item.positive || 0,
+            "probableCases": item.probableCases || 0,
+            "death": item.death || 0
+        }
+    })
+    localStorage.setItem("covidData", JSON.stringify(filteredData))
+    debugger
+    return filteredData;
 });
 
-// const cacheData = JSON.parse(localStorage.getItem("covidData")) || []
 const cacheData = []
 const initialState = {
     date: 20210307,
@@ -27,7 +35,6 @@ const covidSlice = createSlice({
             })
             .addCase(fetchData.fulfilled, (state, action) => {
                 state.status = 'succeeded';
-                debugger
                 state.data = action.payload.filter(item => item.date == state.date)
             })
             .addCase(fetchData.rejected, (state, action) => {
