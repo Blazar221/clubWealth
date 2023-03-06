@@ -21,7 +21,7 @@ const cats = {
       const response = await axios.get(
         "https://api.thecatapi.com/v1/images/search"
       );
-      return response.data;
+      return response;
     } catch (error) {
       return error;
     }

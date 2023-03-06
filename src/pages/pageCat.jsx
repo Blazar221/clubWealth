@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import CatCard from '../components/catCard';
+import CatCard from '../components/cat/catCard';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchData, setPage } from '../redux/feature/catSlice';
 
@@ -11,7 +11,6 @@ const PageCat = () => {
     const error = useSelector((state) => state.cat.error);
     const pages = useSelector((state) => state.cat.pages);
     let pagesArray;
-    debugger
 
     switch (pages) {
         case 1:
@@ -65,7 +64,7 @@ const PageCat = () => {
     }
 
     if (status === 'failed') {
-        return <div>{error}</div>;
+        return <div>Error: {error}</div>;
     }
 
     return (

@@ -9,7 +9,8 @@ const covid = {
       const response = await axios.get(
         "https://api.covidtracking.com/v1/states/current.json"
       );
-      return response.data.results;
+      debugger
+      return response;
     } catch (error) {
       return error;
     }
@@ -19,7 +20,7 @@ const covid = {
       const response = await axios.get(
         "https://api.covidtracking.com/v1/states/daily.json"
       );
-      return response.data.results;
+      return response;
     } catch (error) {
       return error;
     }

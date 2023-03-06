@@ -1,7 +1,7 @@
 import React from 'react';
 import { Icon } from '@iconify/react';
 import { useDispatch } from "react-redux";
-import { removeCat } from "../redux/feature/catSlice"
+import { removeCat } from "../../redux/feature/catSlice"
 
 const CatCard = ({ url, catId }) => {
 
@@ -10,7 +10,7 @@ const CatCard = ({ url, catId }) => {
     const dislike = (itemId) => {
         dispatch(removeCat(itemId))
     }
-    debugger
+    
     return (
         <div className="card cw-card p-0 m-1" style={{ width: "320px" }}>
             {
