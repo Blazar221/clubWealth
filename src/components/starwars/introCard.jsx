@@ -7,7 +7,6 @@ const IntroCard = ({ picUrl, introText, name }) => {
     const dispatch = useDispatch()
 
     const changePage = () => {
-        debugger
         switch (name) {
             case "Characters":
                 dispatch(setPage("People"))

@@ -4,6 +4,7 @@ const starwars = {
   getPeople: async () => {
     try {
       const response = await axios.get("https://swapi.dev/api/people");
+      debugger
       return response.data.results;
     } catch (error) {
       return error;
@@ -12,6 +13,7 @@ const starwars = {
   getPlanets: async () => {
     try {
       const response = await axios.get("https://swapi.dev/api/planets");
+      debugger
       return response.data.results;
     } catch (error) {
       return error;
