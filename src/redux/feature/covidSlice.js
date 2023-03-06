@@ -13,14 +13,14 @@ export const fetchData = createAsyncThunk('covid/history', async () => {
         }
     })
     localStorage.setItem("covidData", JSON.stringify(filteredData))
-    debugger
     return filteredData;
 });
 
-const cacheData = []
+const cacheData = JSON.parse(localStorage.getItem("covidData")) || []
 const initialState = {
     date: 20210307,
-    data: cacheData.filter(item => item.date == date),
+    originData: cacheData,
+    data: cacheData.filter(item => item.date == 20210307),
     status: cacheData.length > 0 ? "succeeded" : "idle",
     error: null,
 }
@@ -28,6 +28,12 @@ const initialState = {
 const covidSlice = createSlice({
     name: 'covid',
     initialState,
+    reducers: {
+        setDate: (state, action) => {
+            state.date = action.payload
+            state.data = state.originData.filter(item => item.date == state.date)
+        }
+    },
     extraReducers: (builder) => {
         builder
             .addCase(fetchData.pending, (state) => {
@@ -35,6 +41,7 @@ const covidSlice = createSlice({
             })
             .addCase(fetchData.fulfilled, (state, action) => {
                 state.status = 'succeeded';
+                state.originData = action.payload;
                 state.data = action.payload.filter(item => item.date == state.date)
             })
             .addCase(fetchData.rejected, (state, action) => {
@@ -43,5 +50,6 @@ const covidSlice = createSlice({
             });
     },
 });
+export const { setDate } = covidSlice.actions
 
 export default covidSlice.reducer;
